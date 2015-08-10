@@ -134,6 +134,14 @@ public class LockActivityFragment extends Fragment {
                     ed.putBoolean(STOPPED_LBL, false);
                     buttonListener.onButtonCommand("stop");
                     break;
+                case R.id.share:
+                    Log.i(TAG, "ShareBtn");
+                    buttonListener.keyShareCommand("keyshare");
+                    break;
+                case R.id.change:
+                    Log.i(TAG,"ChangeBtn");
+                    buttonListener.keyShareCommand("keychange");
+                    break;
                 case R.id.trunk:Log.i(TAG, "TrunkBtn");
                     ed.putBoolean("Gruka", false);
                     buttonListener.onButtonCommand("trunk");

@@ -30,4 +30,8 @@
     <string name="not_car_out_range">Car Out of Range : </string>
     <string name="not_new_key">New Digital Key</string>
     <string name="not_auto_lock">Auto Locked</string>
+    <string name="title_activity_key_share">keyShareActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="user">User:</string>
+    <string name="vehicle">Vehicle:</string>
 </resources>
