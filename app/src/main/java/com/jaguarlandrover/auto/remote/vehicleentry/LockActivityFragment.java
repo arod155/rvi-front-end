@@ -36,6 +36,8 @@ public class LockActivityFragment extends Fragment {
     private Button trunk;
     private Button panic;
     private Button panicOn;
+    private Button share;
+    private Button change;
 
     private LockFragmentButtonListener buttonListener;
 
@@ -58,7 +60,8 @@ public class LockActivityFragment extends Fragment {
         trunk = (Button) view.findViewById(R.id.trunk);
         panic = (Button) view.findViewById(R.id.panic);
         panicOn = (Button) view.findViewById(R.id.panicOn);
-
+        share = (Button) view.findViewById(R.id.share);
+        change = (Button) view.findViewById(R.id.change);
         sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
 
         unlock.setTypeface(fontawesome);
@@ -68,6 +71,8 @@ public class LockActivityFragment extends Fragment {
         trunk.setTypeface(fontawesome);
         panic.setTypeface(fontawesome);
         panicOn.setTypeface(fontawesome);
+        share.setTypeface(fontawesome);
+        change.setTypeface(fontawesome);
 
         lock.setOnClickListener(l);
         unlock.setOnClickListener(l);
@@ -76,6 +81,8 @@ public class LockActivityFragment extends Fragment {
         trunk.setOnClickListener(l);
         panic.setOnClickListener(l);
         panicOn.setOnClickListener(l);
+        share.setOnClickListener(l);
+        change.setOnClickListener(l);
 
         buttonListener = (LockFragmentButtonListener) getActivity();
 
@@ -119,11 +126,13 @@ public class LockActivityFragment extends Fragment {
                     break;
                 case R.id.start:
                     Log.i(TAG,"StartBtn");
-                    ed.putBoolean(STOPPED_LBL, false);
+                    ed.putBoolean(STOPPED_LBL, true);
+                    buttonListener.onButtonCommand("start");
                     break;
                 case R.id.stop:
                     Log.i(TAG,"StopBtn");
-                    ed.putBoolean(STOPPED_LBL, true);
+                    ed.putBoolean(STOPPED_LBL, false);
+                    buttonListener.onButtonCommand("stop");
                     break;
                 case R.id.trunk:Log.i(TAG, "TrunkBtn");
                     ed.putBoolean("Gruka", false);
@@ -162,8 +171,11 @@ public class LockActivityFragment extends Fragment {
         boolean locked = sharedPref.getBoolean(LOCKED_LBL, true);
         boolean stopped = sharedPref.getBoolean(STOPPED_LBL,true);
 
-        lock.setVisibility(locked?View.GONE:View.VISIBLE);
-        unlock.setVisibility(locked?View.VISIBLE:View.GONE);
+        //lock.setVisibility(locked?View.GONE:View.VISIBLE);
+        //unlock.setVisibility(locked?View.VISIBLE:View.GONE);
+
+        //start.setVisibility(stopped?View.GONE:View.VISIBLE);
+        //stop.setVisibility(stopped?View.VISIBLE:View.GONE);
 
         trunk.setEnabled(true);
     }
@@ -171,9 +183,10 @@ public class LockActivityFragment extends Fragment {
     public void onNewServiceDiscovered(String... service) {
         for(String s:service)
             Log.e(TAG, "Service = " + s);
-    }
+}
 
     public interface LockFragmentButtonListener {
         public void onButtonCommand(String cmd);
+        public void keyShareCommand(String key);
     }
 }

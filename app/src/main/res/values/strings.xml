@@ -15,13 +15,15 @@
     <string name="action_quit">Quit</string>
     <string name="lock">Lock</string>
     <string name="unlock">Unlock</string>
-    <string name="lock_icon">&#xf13e;</string>
-    <string name="unlock_icon">&#xf023;</string>
+    <string name="lock_icon">&#xf023;</string>
+    <string name="unlock_icon">&#xf13e;</string>
     <string name="trunk">pop trunk</string>
     <string name="panic_icon">&#xf027;</string>
     <string name="panic_stop_icon">&#xf028;</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
+    <string name="share">Share</string>
+    <string name="change">Modify Key</string>
     <string name="not_connected_car">Connected to car</string>
     <string name="not_auto_unlock">Auto Unlock</string>
     <string name="not_car_disc">Car Discovered : </string>
