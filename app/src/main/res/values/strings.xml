@@ -34,4 +34,5 @@
     <string name="hello_world">Hello world!</string>
     <string name="user">User:</string>
     <string name="vehicle">Vehicle:</string>
+    <string name="share_lbl">Key Sharing</string>
 </resources>
