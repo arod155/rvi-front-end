@@ -18,7 +18,33 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 tools:context=".MainActivity"
-                android:weightSum="1">
+                android:weightSum="1"
+    style="@style/AppTheme">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user"
+        android:textSize="20dp"
+        android:layout_marginRight="150dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vehicle"
+        android:textSize="20dp" />
+</LinearLayout>
+
+<View
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:background="@android:color/white"
+    android:layout_marginBottom="5dp"/>
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -31,6 +57,7 @@
         android:layout_width="100sp"
         android:layout_height="140sp"
         android:layout_marginTop="0dp"
+        android:layout_marginRight="10dp"
         android:text="@string/unlock_icon"
         android:background="@drawable/grey_button"
         android:textSize="100sp"
@@ -46,6 +73,7 @@
             android:layout_width="100sp"
             android:layout_height="100sp"
             android:layout_marginTop="0dp"
+            android:layout_marginRight="10dp"
             android:text="@string/start"
             android:background="@drawable/red_button"
             android:textSize="20sp"
@@ -81,82 +109,105 @@
         android:visibility="visible" />
     </LinearLayout>
 
-    <LinearLayout
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="100dp">
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="@string/share_lbl"
+        android:textSize="20dp"
+        android:layout_marginRight="150dp"/>
 
-        <Button
-            android:id="@+id/share"
-            android:layout_column="2"
-            android:layout_row="8"
-            android:layout_width="115sp"
-            android:layout_height="115sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="@string/share"
-            android:background="@drawable/black_button"
-            android:textAllCaps="false"
-            android:visibility="visible"
-            style="@style/black_button_text"
-            />
 
-        <Button
-            android:id="@+id/change"
-            android:layout_column="0"
-            android:layout_row="8"
-            android:layout_width="115sp"
-            android:layout_height="115sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="@string/change"
-            android:background="@drawable/black_button"
-            android:textAllCaps="false"
-            android:visibility="visible"
-            style="@style/black_button_text"
-            />
-    </LinearLayout>
+</LinearLayout>
+
+<View
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:background="@android:color/white" />
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="5dp">
 
     <Button
-        android:id="@+id/trunk"
-        android:layout_column="1"
-        android:layout_row="1"
-        android:layout_width="90sp"
-        android:layout_height="wrap_content"
+        android:id="@+id/share"
+        android:layout_column="2"
+        android:layout_row="8"
+        android:layout_width="115sp"
+        android:layout_height="115sp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="95dp"
         android:text="@string/share"
         android:background="@drawable/black_button"
         android:textAllCaps="false"
-        android:visibility="gone"
+        android:visibility="visible"
         style="@style/black_button_text"
         />
 
     <Button
-        android:id="@+id/panic"
+        android:id="@+id/change"
+        android:layout_column="0"
+        android:layout_row="8"
         android:layout_width="115sp"
         android:layout_height="115sp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:text="@string/panic_icon"
-        android:onClick="sendPanic"
-        android:background="@drawable/red_button"
-        android:textSize="90sp"
-        android:textColor="#fff"
-        android:visibility="gone" />
+        android:layout_marginTop="10dp"
+        android:text="@string/change"
+        android:background="@drawable/black_button"
+        android:textAllCaps="false"
+        android:visibility="visible"
+        style="@style/black_button_text"
+        />
+</LinearLayout>
 
-    <Button
-        android:id="@+id/panicOn"
-        android:layout_width="115sp"
-        android:layout_height="115sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:text="@string/panic_stop_icon"
-        android:onClick="sendPanicOff"
-        android:background="@drawable/red_button"
-        android:textSize="90sp"
-        android:textColor="#fff"
-        android:visibility="gone" />
+<Button
+    android:id="@+id/trunk"
+    android:layout_column="1"
+    android:layout_row="1"
+    android:layout_width="90sp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="20dp"
+    android:text="@string/share"
+    android:background="@drawable/black_button"
+    android:textAllCaps="false"
+    android:visibility="gone"
+    style="@style/black_button_text"
+    />
+
+<Button
+    android:id="@+id/panic"
+    android:layout_width="115sp"
+    android:layout_height="115sp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="20dp"
+    android:text="@string/panic_icon"
+    android:onClick="sendPanic"
+    android:background="@drawable/red_button"
+    android:textSize="90sp"
+    android:textColor="#fff"
+    android:visibility="gone" />
+
+<Button
+    android:id="@+id/panicOn"
+    android:layout_width="115sp"
+    android:layout_height="115sp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="20dp"
+    android:text="@string/panic_stop_icon"
+    android:onClick="sendPanicOff"
+    android:background="@drawable/red_button"
+    android:textSize="90sp"
+    android:textColor="#fff"
+    android:visibility="gone" />
 <!--<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:tools="http://schemas.android.com/tools"
                   android:id="@+id/GridLayout1"
