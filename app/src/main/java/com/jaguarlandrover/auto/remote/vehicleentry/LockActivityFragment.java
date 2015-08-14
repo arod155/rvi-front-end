@@ -9,6 +9,7 @@
 
 package com.jaguarlandrover.auto.remote.vehicleentry;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class LockActivityFragment extends Fragment {
 
@@ -49,9 +51,11 @@ public class LockActivityFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_lock, container, false);
 
         Typeface fontawesome = Typeface.createFromAsset(getActivity().getAssets(), "fonts/fontawesome-webfont.ttf");
+        LoginActivity login = new LoginActivity();
 
         lock = (Button) view.findViewById(R.id.lock);
         unlock = (Button) view.findViewById(R.id.unlock);
@@ -63,6 +67,7 @@ public class LockActivityFragment extends Fragment {
         share = (Button) view.findViewById(R.id.share);
         change = (Button) view.findViewById(R.id.change);
         sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+
 
         unlock.setTypeface(fontawesome);
         lock.setTypeface(fontawesome);

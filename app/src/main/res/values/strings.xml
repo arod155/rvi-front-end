@@ -37,4 +37,5 @@
     <string name="share_lbl">Key Sharing</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_key_change">keyChangeActivity</string>
+    <string name="title_activity_http_example">HttpExampleActivity</string>
 </resources>
