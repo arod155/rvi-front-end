@@ -55,8 +55,6 @@ public class LockActivityFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_lock, container, false);
 
         Typeface fontawesome = Typeface.createFromAsset(getActivity().getAssets(), "fonts/fontawesome-webfont.ttf");
-        LoginActivity login = new LoginActivity();
-
         lock = (Button) view.findViewById(R.id.lock);
         unlock = (Button) view.findViewById(R.id.unlock);
         start = (Button) view.findViewById(R.id.start);

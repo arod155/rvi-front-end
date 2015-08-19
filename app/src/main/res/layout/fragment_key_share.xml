@@ -36,20 +36,44 @@
         android:layout_height="1dp"
         android:background="@android:color/white"
         android:layout_marginBottom="15dp"/>
+<android.support.v4.view.ViewPager
+    android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    android:id = "@+id/userscroll">
 
-    <Spinner
-        android:id="@+id/spinner1"
+</android.support.v4.view.ViewPager>
+
+<android.support.v4.view.ViewPager
+    android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    android:id = "@+id/vehiclescroll">
+
+</android.support.v4.view.ViewPager>
+<!--    <HorizontalScrollView
+        android:id="@+id/userscroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown" />
-    <Spinner
-        android:id="@+id/spinner2"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/userlayout">
+
+        </LinearLayout>
+    </HorizontalScrollView>
+    <HorizontalScrollView
+        android:id="@+id/vehiclescroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        android:layout_marginBottom="15dp"/>
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/vehiclelayout">
+
+        </LinearLayout>
+
+    </HorizontalScrollView>-->
 
     <View
         android:layout_width="fill_parent"
@@ -172,7 +196,6 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:id="@+id/ShareBtn"
         android:text="Share Key"/>
 </LinearLayout>
