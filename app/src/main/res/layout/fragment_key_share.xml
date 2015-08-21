@@ -39,6 +39,7 @@
 <android.support.v4.view.ViewPager
     android:layout_width="fill_parent"
     android:layout_height="100dp"
+    android:layout_marginBottom ="10dp"
     android:id = "@+id/userscroll">
 
 </android.support.v4.view.ViewPager>
@@ -183,14 +184,14 @@
             android:textOn="ON"
             android:textOff="OFF"
             android:layout_marginEnd="15dp"
-            android:id="@+id/lockSwitch"/>
+            android:id="@+id/lock_unlock"/>
         <Switch
             android:layout_column="1"
             android:layout_row="1"
             android:textOn="ON"
             android:textOff="OFF"
             android:layout_marginEnd="15dp"
-            android:id="@+id/engineSwitch"/>
+            android:id="@+id/engine"/>
 
     </GridLayout>
     <Button
