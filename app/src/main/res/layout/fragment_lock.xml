@@ -118,6 +118,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/keysharelbl"
             android:text="@string/share_lbl"
             android:textSize="20dp"
             android:layout_marginRight="150dp"/>
@@ -134,6 +135,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:id="@+id/bottomlayout"
         android:layout_marginTop="5dp">
 
         <Button
@@ -167,7 +169,16 @@
             style="@style/black_button_text"
             />
     </LinearLayout>
-
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/guestvalidDate"
+    android:visibility="gone"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guestvalidTime"
+        android:visibility="gone"/>
     <Button
         android:id="@+id/trunk"
         android:layout_column="1"

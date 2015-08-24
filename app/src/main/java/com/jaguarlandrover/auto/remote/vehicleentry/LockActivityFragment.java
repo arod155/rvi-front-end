@@ -10,6 +10,7 @@
 package com.jaguarlandrover.auto.remote.vehicleentry;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,12 +18,22 @@ import android.os.Looper;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.json.JSONObject;
+
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class LockActivityFragment extends Fragment {
 
@@ -40,6 +51,9 @@ public class LockActivityFragment extends Fragment {
     private Button panicOn;
     private Button share;
     private Button change;
+    private TextView keylbl;
+    private TextView validDate;
+    private TextView validTime;
 
     private LockFragmentButtonListener buttonListener;
 
@@ -53,6 +67,7 @@ public class LockActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_lock, container, false);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         Typeface fontawesome = Typeface.createFromAsset(getActivity().getAssets(), "fonts/fontawesome-webfont.ttf");
         lock = (Button) view.findViewById(R.id.lock);
@@ -64,8 +79,13 @@ public class LockActivityFragment extends Fragment {
         panicOn = (Button) view.findViewById(R.id.panicOn);
         share = (Button) view.findViewById(R.id.share);
         change = (Button) view.findViewById(R.id.change);
-        sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-
+        keylbl = (TextView) view.findViewById(R.id.keysharelbl);
+        validDate = (TextView) view.findViewById(R.id.guestvalidDate);
+        validTime = (TextView) view.findViewById(R.id.guestvalidTime);
+        String showme = JSONParser(sharedPref.getString("Userdata", "Nothing There!!"), "authorizedServices");
+        String userType = JSONParser(sharedPref.getString("Userdata","Nothing there!!"), "userType");
+        Log.d("USER", sharedPref.getString("Userdata","akjfajsdhf"));
+        setButtons(showme, userType);
 
         unlock.setTypeface(fontawesome);
         lock.setTypeface(fontawesome);
@@ -86,7 +106,6 @@ public class LockActivityFragment extends Fragment {
         panicOn.setOnClickListener(l);
         share.setOnClickListener(l);
         change.setOnClickListener(l);
-
         buttonListener = (LockFragmentButtonListener) getActivity();
 
         return view;
@@ -199,5 +218,66 @@ public class LockActivityFragment extends Fragment {
     public interface LockFragmentButtonListener {
         public void onButtonCommand(String cmd);
         public void keyShareCommand(String key);
+    }
+
+    public void setButtons(String authServices, String userType){
+        try {
+            JSONObject json = new JSONObject(authServices);
+            if(userType.equals("guest")) {
+                setDateLabel();
+                share.setVisibility(View.GONE);
+                change.setVisibility(View.GONE);
+                keylbl.setText("Key Valid To:");
+
+                start.setEnabled(json.getBoolean("engine"));
+                stop.setEnabled(json.getBoolean("engine"));
+                lock.setEnabled(json.getBoolean("lock"));
+                unlock.setEnabled(json.getBoolean("lock"));
+                if (json.getBoolean("engine") == false) {
+                    start.setTextColor(Color.parseColor("#ff757575"));
+                    stop.setTextColor(Color.parseColor("#ff757575"));
+                }
+                if (json.getBoolean("lock") == false) {
+                    lock.setTextColor(Color.parseColor("#ff757575"));
+                    unlock.setTextColor(Color.parseColor("#ff757575"));
+                }
+            }else if(userType.equals("owner")){
+                start.setEnabled(true);
+                stop.setEnabled(true);
+                lock.setEnabled(true);
+                unlock.setEnabled(true);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    public String JSONParser(String jsonString, String RqstData)
+    {
+        try {
+            JSONObject json = new JSONObject(jsonString);
+            String parameterVal = json.getString(RqstData);
+            return parameterVal;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "0";
+    }
+    public void setDateLabel() {
+        String[] dateTime = JSONParser(sharedPref.getString("Userdata", "There's nothing"), "validTo").split("T");
+        String userDate = dateTime[0];
+        String userTime = dateTime[1];
+        String userTZ = userDate + " "+userTime;
+        SimpleDateFormat display = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        try {
+
+            display.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Date rawDate = display.parse(userTZ);
+            validDate.setText(display.format(raw));
+        }catch(Exception e){e.printStackTrace();}
+
+        validTime.setVisibility(View.VISIBLE);
+        validDate.setVisibility(View.VISIBLE);
     }
 }

@@ -38,10 +38,13 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_key_change">keyChangeActivity</string>
     <string name="title_activity_http_example">HttpExampleActivity</string>
-    <string name="USERNAME">username</string>
+    <string name="USERNAME">user</string>
     <string name="USERTYPE">usertype</string>
     <string name="VEHICLE">vehicle</string>
     <string name="LOCK">lock</string>
     <string name="ENGINE">engine</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
