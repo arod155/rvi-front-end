@@ -57,7 +57,6 @@ public class LockActivityFragment extends Fragment {
     private TextView keylbl;
     private TextView validDate;
     private TextView validTime;
-    private Button demoButton;
     private LockFragmentButtonListener buttonListener;
 
     //Temp button press storage
@@ -74,7 +73,6 @@ public class LockActivityFragment extends Fragment {
 
         Typeface fontawesome = Typeface.createFromAsset(getActivity().getAssets(), "fonts/fontawesome-webfont.ttf");
 
-        demoButton = (Button)view.findViewById(R.id.demobutton);
         lock = (Button) view.findViewById(R.id.lock);
         unlock = (Button) view.findViewById(R.id.unlock);
         start = (Button) view.findViewById(R.id.start);
@@ -102,9 +100,6 @@ public class LockActivityFragment extends Fragment {
         share.setTypeface(fontawesome);
         change.setTypeface(fontawesome);
 
-        demoButton.setBackgroundColor(Color.TRANSPARENT);
-
-        demoButton.setOnClickListener(l);
         lock.setOnClickListener(l);
         unlock.setOnClickListener(l);
         start.setOnClickListener(l);
@@ -142,17 +137,6 @@ public class LockActivityFragment extends Fragment {
         public void onClick(View v) {
             SharedPreferences.Editor ed = sharedPref.edit();
             switch(v.getId()) {
-                case R.id.demobutton:
-                    Handler demohandler = new Handler();
-                    demohandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            buttonListener.keyShareCommand("demo");
-
-                        }
-                    }, 5000);
-                    break;
                 case R.id.lock:
                     Log.i(TAG,"LockBtn");
                     ed.putBoolean(LOCKED_LBL,true);

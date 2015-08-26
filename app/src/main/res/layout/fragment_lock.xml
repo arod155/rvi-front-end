@@ -108,11 +108,6 @@
             android:textColor="#fff"
             android:visibility="visible" />
     </LinearLayout>
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:visibility="visible"
-    android:id="@+id/demobutton"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
