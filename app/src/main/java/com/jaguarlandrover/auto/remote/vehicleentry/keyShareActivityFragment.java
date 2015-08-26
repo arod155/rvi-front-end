@@ -41,10 +41,11 @@ public class keyShareActivityFragment extends Fragment {
     ViewPager carPages;
     int[] users={R.drawable.bjamal,
             R.drawable.llesavre,
-            R.drawable.arodriguez,
-            R.drawable.dthiriez};
+            R.drawable.dthiriez,
+            R.drawable.mbontrager,
+            R.drawable.arodriguez};
 
-    int[] vehicles = {R.drawable.sciontc};
+    int[] vehicles = {R.drawable.ftype};
 
     private ShareFragmentButtonListener buttonListener;
 
@@ -141,6 +142,7 @@ public class keyShareActivityFragment extends Fragment {
     private void updateDisplay(TextView dateDisplay) {
         dateDisplay.setText(month_x+"/"+day_x+"/"+year_x);
     }
+
     private void updateTime(TextView timeDisplay){
         String newMin;
         newMin = String.valueOf(min_x);
@@ -148,7 +150,7 @@ public class keyShareActivityFragment extends Fragment {
         {
             newMin = "0"+String.valueOf(min_x);
         }
-        timeDisplay.setText(hour_x + ":" + newMin + "" + am_pm);
+        timeDisplay.setText(hour_x + ":" + newMin + " " + am_pm);
     }
 
     public void showSelect(){
@@ -187,12 +189,12 @@ public class keyShareActivityFragment extends Fragment {
     private TimePickerDialog.OnTimeSetListener tpickerListener = new TimePickerDialog.OnTimeSetListener(){
         @Override
         public void onTimeSet(TimePicker view,int hourOfDay, int minute ){
-            am_pm = "AM";
+            am_pm = "am";
             hour_x = hourOfDay;
 
             if(hourOfDay > 11)
             {
-                am_pm = "PM";
+                am_pm = "pm";
                 if(hourOfDay == 12)
                 {}
                 else {
@@ -213,8 +215,11 @@ public class keyShareActivityFragment extends Fragment {
     public DatePickerDialog.OnDateSetListener getdplistener(){
         return dpickerListener;
     }
-    public TimePickerDialog.OnTimeSetListener gettplistener(){
-        return tpickerListener;
-    }
+    public TimePickerDialog.OnTimeSetListener gettplistener(){return tpickerListener;}
 
+    public int getyear(){return year_x;}
+    public int getmonth(){return month_x;}
+    public int getday(){return day_x;}
+    public int gethour(){return hour_x;}
+    public int getmin(){return min_x;}
 }

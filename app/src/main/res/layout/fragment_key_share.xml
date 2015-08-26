@@ -47,7 +47,8 @@
 <android.support.v4.view.ViewPager
     android:layout_width="fill_parent"
     android:layout_height="100dp"
-    android:id = "@+id/vehiclescroll">
+    android:id = "@+id/vehiclescroll"
+    android:layout_marginBottom ="10dp">
 
 </android.support.v4.view.ViewPager>
 <!--    <HorizontalScrollView

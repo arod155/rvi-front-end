@@ -9,6 +9,9 @@
 
 package com.jaguarlandrover.auto.remote.vehicleentry;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -54,7 +57,7 @@ public class LockActivityFragment extends Fragment {
     private TextView keylbl;
     private TextView validDate;
     private TextView validTime;
-
+    private Button demoButton;
     private LockFragmentButtonListener buttonListener;
 
     //Temp button press storage
@@ -70,6 +73,8 @@ public class LockActivityFragment extends Fragment {
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         Typeface fontawesome = Typeface.createFromAsset(getActivity().getAssets(), "fonts/fontawesome-webfont.ttf");
+
+        demoButton = (Button)view.findViewById(R.id.demobutton);
         lock = (Button) view.findViewById(R.id.lock);
         unlock = (Button) view.findViewById(R.id.unlock);
         start = (Button) view.findViewById(R.id.start);
@@ -97,6 +102,9 @@ public class LockActivityFragment extends Fragment {
         share.setTypeface(fontawesome);
         change.setTypeface(fontawesome);
 
+        demoButton.setBackgroundColor(Color.TRANSPARENT);
+
+        demoButton.setOnClickListener(l);
         lock.setOnClickListener(l);
         unlock.setOnClickListener(l);
         start.setOnClickListener(l);
@@ -107,7 +115,6 @@ public class LockActivityFragment extends Fragment {
         share.setOnClickListener(l);
         change.setOnClickListener(l);
         buttonListener = (LockFragmentButtonListener) getActivity();
-
         return view;
     }
 
@@ -130,12 +137,22 @@ public class LockActivityFragment extends Fragment {
         toggleButtonsFromPref();
     }
 
-
     private View.OnClickListener l = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             SharedPreferences.Editor ed = sharedPref.edit();
             switch(v.getId()) {
+                case R.id.demobutton:
+                    Handler demohandler = new Handler();
+                    demohandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            buttonListener.keyShareCommand("demo");
+
+                        }
+                    }, 5000);
+                    break;
                 case R.id.lock:
                     Log.i(TAG,"LockBtn");
                     ed.putBoolean(LOCKED_LBL,true);
@@ -268,16 +285,20 @@ public class LockActivityFragment extends Fragment {
         String[] dateTime = JSONParser(sharedPref.getString("Userdata", "There's nothing"), "validTo").split("T");
         String userDate = dateTime[0];
         String userTime = dateTime[1];
-        String userTZ = userDate + " "+userTime;
-        SimpleDateFormat display = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        userTime.substring(0,userTime.length()-5);
+        String userDateTime = userDate+" "+userTime;
+        SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        oldFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         try {
+            Date newDate = oldFormat.parse(userDateTime);
+            oldFormat = new SimpleDateFormat("MM/dd/yyy HH:mm:ss");
+            String date = oldFormat.format(newDate);
+            validDate.setText(date);
+        }catch (Exception e){e.printStackTrace();}
 
-            display.setTimeZone(TimeZone.getTimeZone("UTC"));
-            Date rawDate = display.parse(userTZ);
-            validDate.setText(display.format(raw));
-        }catch(Exception e){e.printStackTrace();}
-
-        validTime.setVisibility(View.VISIBLE);
+        //validTime.setVisibility(View.VISIBLE);
         validDate.setVisibility(View.VISIBLE);
     }
+
+
 }
