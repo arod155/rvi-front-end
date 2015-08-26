@@ -42,9 +42,10 @@ public class keyShareActivityFragment extends Fragment {
     int[] users={R.drawable.bjamal,
             R.drawable.llesavre,
             R.drawable.dthiriez,
+            R.drawable.mbontrager,
             R.drawable.arodriguez};
 
-    int[] vehicles = {R.drawable.sciontc};
+    int[] vehicles = {R.drawable.ftype};
 
     private ShareFragmentButtonListener buttonListener;
 
