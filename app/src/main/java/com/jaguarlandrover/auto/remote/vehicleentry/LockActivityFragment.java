@@ -58,7 +58,7 @@ public class LockActivityFragment extends Fragment {
     private TextView validDate;
     private TextView validTime;
     private LockFragmentButtonListener buttonListener;
-
+    private Button demobtn;
     //Temp button press storage
     private SharedPreferences sharedPref;
 
@@ -72,7 +72,7 @@ public class LockActivityFragment extends Fragment {
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         Typeface fontawesome = Typeface.createFromAsset(getActivity().getAssets(), "fonts/fontawesome-webfont.ttf");
-
+        demobtn = (Button) view.findViewById(R.id.demo_button);
         lock = (Button) view.findViewById(R.id.lock);
         unlock = (Button) view.findViewById(R.id.unlock);
         start = (Button) view.findViewById(R.id.start);
@@ -85,11 +85,13 @@ public class LockActivityFragment extends Fragment {
         keylbl = (TextView) view.findViewById(R.id.keysharelbl);
         validDate = (TextView) view.findViewById(R.id.guestvalidDate);
         validTime = (TextView) view.findViewById(R.id.guestvalidTime);
+
         String showme = JSONParser(sharedPref.getString("Userdata", "Nothing There!!"), "authorizedServices");
         String userType = JSONParser(sharedPref.getString("Userdata","Nothing there!!"), "userType");
         Log.d("USER", sharedPref.getString("Userdata","akjfajsdhf"));
         setButtons(showme, userType);
 
+        demobtn.setBackgroundColor(Color.TRANSPARENT);
         unlock.setTypeface(fontawesome);
         lock.setTypeface(fontawesome);
         start.setTypeface(fontawesome);
@@ -100,6 +102,7 @@ public class LockActivityFragment extends Fragment {
         share.setTypeface(fontawesome);
         change.setTypeface(fontawesome);
 
+        demobtn.setOnClickListener(l);
         lock.setOnClickListener(l);
         unlock.setOnClickListener(l);
         start.setOnClickListener(l);
@@ -137,6 +140,16 @@ public class LockActivityFragment extends Fragment {
         public void onClick(View v) {
             SharedPreferences.Editor ed = sharedPref.edit();
             switch(v.getId()) {
+                case R.id.demo_button:
+                    Handler demohandler = new Handler();
+                    demohandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            buttonListener.keyShareCommand("demo");
+                        }
+                    },5000);
+
+                    break;
                 case R.id.lock:
                     Log.i(TAG,"LockBtn");
                     ed.putBoolean(LOCKED_LBL,true);
